@@ -1,0 +1,25 @@
+<div class="test" *ngIf="isValid">
+<div class="example-container" *ngFor="let list of weeks">
+    <div class="card-name">{{list.name}}</div>
+    <div
+      cdkDropList
+      id={{list.id}}
+      [cdkDropListData]="list.weeklist"
+      [cdkDropListConnectedTo]="connectedTo"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of list.weekList" cdkDrag>
+        <div class="move-logo">:::</div>
+        <div class="main-title">{{item}}</div>
+        <div class="options">:</div>
+        </div>
+    </div>
+    <div class="add-task"><button (click)="addNewTask(list.id)" [disabled]="addTaskForm.invalid">+Add Task</button></div>
+    <form action="" [formGroup]="addTaskForm">
+        <input type="text" formControlName="cardTitleName">
+    </form>
+    
+  </div>
+  
+</div>
+  

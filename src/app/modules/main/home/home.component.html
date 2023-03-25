@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="header">
+        <app-header></app-header>
+    </div>
+    <div class="workable">
+        <div class="left">
+            <app-side-nav></app-side-nav>
+        </div>
+        <div class="right">
+            <div class="small-nav">
+                <app-top-nav></app-top-nav>
+            </div>
+            <div class="main-area">
+                    <app-card-drawer></app-card-drawer>
+                    <mat-card>
+                        <form action="" class="card-form" [formGroup]="createNew">
+                            <div class="new-card-body"><input type="text" placeholder="Card Title" formControlName="title"></div>
+                            <div class="create"><button type="button" class="btn btn-success" [disabled]="createNew.invalid" (click)="addNew()">+</button></div>
+                        </form>
+                      </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
