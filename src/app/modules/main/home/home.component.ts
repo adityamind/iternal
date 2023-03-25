@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,Validators, FormControl} from '@angular/forms';
 import {HeaderComponent} from '../../header/header.component'
+import { MainService } from '../services/main/main.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+@Injectable()
 export class HomeComponent implements OnInit{
   createNew !:FormGroup;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private mainService:MainService){}
   ngOnInit(): void {
     this.createNew=this.fb.group({
       title:['',Validators.required]
@@ -27,14 +29,6 @@ export class HomeComponent implements OnInit{
       name:name,
       weekList:[]
     }
-    if(localStorage.getItem('weeks')==null){
-      localStorage.setItem('weeks',JSON.stringify([val]));
-    }
-    else{
-      let item=localStorage.getItem('weeks');
-      let arr:any=JSON.parse(JSON.parse(JSON.stringify(item)));
-      arr.push(val);
-      localStorage.setItem('weeks',JSON.stringify(arr));
-    }
+    this.mainService.addCard(val);
   }
 }

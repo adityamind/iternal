@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './card-drawer.component.html',
   styleUrls: ['./card-drawer.component.scss']
 })
+@Injectable()
 export class CardDrawerComponent implements OnInit {
   weeks:any = [];
   connectedTo:any = [];
@@ -93,7 +94,7 @@ get cardTitleName():FormControl{
 
   addNewTask(id:any){
 let val=this.cardTitleName.value;
-   let arr= JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('weeks'))));
+let arr= JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('weeks'))));
     for(let week of arr){
       if(week.id==id){
         week.weekList.push(val);
@@ -102,4 +103,19 @@ let val=this.cardTitleName.value;
     }
     localStorage.setItem('weeks',JSON.stringify(arr));
   }
+
+  deleteList(id:any){
+    let arr= JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('weeks'))));
+    let i=0;
+    for(let week of arr){
+      if(week.id===id){
+        break;
+      }
+      i++;
+    }
+    arr.splice(i,1);
+    localStorage.setItem('weeks',JSON.stringify(arr));
+  }
 }
+
+

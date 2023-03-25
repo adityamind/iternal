@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CardDrawerComponent } from './components/card-drawer/card-drawer.component';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CardDrawerComponent } from './components/card-drawer/card-drawer.compon
     MatFormFieldModule,
     MatButtonModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule
   ],
   exports:[
     HomeComponent,
